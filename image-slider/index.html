@@ -1,0 +1,176 @@
+<html>
+<title>Full House</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    .content {
+        margin-left: auto;
+        margin-right: auto;
+        /* avoid image overflow */
+        max-width: 980px;
+        position: relative;
+    }
+
+    .slides {
+        height: 450px;
+        vertical-align: middle;
+    }
+
+    .arrowControl {
+        position: absolute;
+        z-index: 100;
+        top: 50%;
+        width: 100%;
+    }
+
+    .dotControl {
+        text-align: center;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+
+    .left-arrow,
+    .right-arrow,
+    .pageDot {
+        cursor: pointer
+    }
+
+    .left-arrow {
+        float: left;
+        color: #fff;
+    }
+
+    .right-arrow {
+        float: right;
+        color: #fff;
+    }
+
+    .hover-arrow:hover {
+        color: #b4aa50;
+    }
+
+    .pageDot {
+        background-color: transparent;
+        display: inline-block;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-align: center;
+        border-radius: 50%;
+        height: 13px;
+        width: 13px;
+        padding: 0;
+        border: 1px solid #ccc;
+        transition: background-color 0.6s ease;
+    }
+
+    .dot-white,
+    .hover-white:hover {
+        color: #000;
+        background-color: #fff;
+    }
+
+    /* Fading animation */
+    .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+</style>
+
+<body>
+
+    <div>
+        <h2>~Full House~</h2>
+    </div>
+
+    <div class="content" style="max-width:800px">
+        <img class="slides fade" src="donut.jpg" style="width:100%">
+        <img class="slides fade" src="burger.jpg" style="width:100%">
+        <img class="slides fade" src="shrimp.jpg" style="width:100%">
+        <div class="arrowControl">
+            <div class="left-arrow hover-arrow" onclick="plusDivs(-1)">&#10094;</div>
+            <div class="right-arrow hover-arrow" onclick="plusDivs(1)">&#10095;</div>
+        </div>
+        <div class="dotControl" style="width:100%">
+            <span class="pageDot hover-white" onclick="currentDiv(1)"></span>
+            <span class="pageDot hover-white" onclick="currentDiv(2)"></span>
+            <span class="pageDot hover-white" onclick="currentDiv(3)"></span>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;  //default show first image
+        autoShow();
+
+        // showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function currentDiv(n) {
+            showDivs(slideIndex = n);
+        }
+
+        function autoShow() { //slide always from left to right
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            var dots = document.getElementsByClassName("pageDot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            if (slideIndex > slides.length) { slideIndex = 1 } //go to first
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dot-white", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " dot-white";
+            slideIndex++; //auto loop
+            setTimeout(autoShow, 5000); // Change image every 5 seconds
+        }
+
+        function showDivs(n) {
+            let i;
+            let x = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("pageDot");
+            if (n > x.length) { slideIndex = 1 } //go to first
+            if (n < 1) { slideIndex = x.length } //go to last
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  //reset slides ,all not show
+                x[i].className = x[i].className.replace(" fade", "");
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" dot-white", "");
+            }
+            x[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " dot-white";
+        }
+    </script>
+
+</body>
+
+</html>
