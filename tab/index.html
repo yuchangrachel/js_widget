@@ -1,0 +1,237 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+    <link rel="stylesheet" type="text/css" href="../index.css">
+</head>
+<style>
+    /* 
+    ============
+    section 
+    ============
+    */
+    /* REVIEW:<section> ---> If include chapter, header, footer */
+    .section {
+        padding: 5rem 0;
+    }
+
+    .section-block {
+        /* REVIEW: perfect combinatio width/max-width + margin:0 auto */
+        width: 90vw;
+        margin: 0 auto;
+        /* REVIEW: max-width ---> better handle smaller screen than width */
+        max-width: 1170px;
+    }
+
+    @media screen and (min-width: 992px) {
+        .section-block {
+            width: 95vw;
+        }
+    }
+
+    /*
+    ============
+    About
+    ============
+    */
+    .title {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .title p {
+        width: 80%;
+        /* REVIEW: marin:0 auto ---> set content in the middle */
+        margin: 0 auto;
+    }
+
+    /* REVIEW: <article> ---> if each content is independent */
+    .about-img {
+        margin-bottom: 2rem;
+    }
+
+    .about-img img {
+        width: 100%;
+        display: block;
+        border-radius: var(--radius);
+        object-fit: cover;
+        height: 20rem;
+    }
+
+    @media screen and (min-width: 992px) {
+        .about-img {
+            margin-bottom: 0;
+        }
+
+        .section-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+        }
+    }
+
+    /* REVIEW
+     Grid 
+        display: grid;
+        grid-template-columns: auto auto auto auto; Or repeat(4, 25%); //width for column numbers, here 4 columns for auto
+        grid-template-rows: 50px 50px 50px 50px;  //height for rows numbers
+    */
+    .about {
+        background: var(--clr-white);
+        border-radius: var(--radius);
+        display: grid;
+        grid-template-rows: 1fr auto;
+    }
+
+    .tab-container {
+        border-top-left-radius: var(--radius);
+        border-top-right-radius: var(--radius);
+        display: grid;
+        /* tab three column */
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .tab-btn:nth-child(1) {
+        border-top-left-radius: var(--radius);
+    }
+
+    .tab-btn:nth-last-child(1) {
+        border-top-right-radius: var(--radius);
+    }
+
+    .tab-btn {
+        padding: 1rem 0;
+        text-align: center;
+        border: none;
+        /* REVIEW: ext-transform: capitalize; ---> Transforms the first character of each word to uppercase */
+        text-transform: capitalize;
+        font-size: 1rem;
+        display: block;
+        background: var(--clr-grey-9);
+        cursor: pointer;
+        transition: var(--transition);
+        letter-spacing: var(--spacing);
+    }
+
+    .tab-btn:hover:not(.active) {
+        background: var(--clr-primary-10);
+        color: var(--clr-primary-5);
+    }
+
+    .about-content {
+        border-bottom-left-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
+        padding: 2rem 1.5rem;
+    }
+
+    /* hide content */
+    .content {
+        display: none;
+    }
+
+    .tab-btn.active {
+        background: var(--clr-white);
+    }
+
+    .content.active {
+        display: block;
+    }
+</style>
+
+<body>
+    <section class="section">
+        <div class="title">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, aperiam!</p>
+        </div>
+        <div class="section-block">
+            <article class="about-img">
+                <img src="../donut.jpg" alt="about image" />
+            </article>
+            <article class="about">
+                <div class="tab-container">
+                    <div class="tab-btn active" data-id="history">history</div>
+                    <div class="tab-btn" data-id="vision">vision</div>
+                    <div class="tab-btn" data-id="goal">goal</div>
+                </div>
+                <div class="about-content">
+                    <div class="content active" id="history">
+                        <h4>history</h4>
+                        <p>
+                            I'm baby puppy pickled schlitz try-hard normcore marfa man bun
+                            mumblecore vice pop-up lomo kombucha glossier bicycle
+                            rights. Umami kinfolk salvia jean shorts offal venmo. Knausgaard
+                            tilde try-hard, woke fixie banjo man bun. Small batch tumeric
+                            mustache tbh wayfarers 8-bit shaman chartreuse tacos. Viral
+                            direct trade hoodie ugh chambray, craft beer pork belly flannel
+                            tacos single-origin coffee art party migas plaid pop-up.
+                        </p>
+                    </div>
+                    <div class="content" id="vision">
+                        <h4>vision</h4>
+                        <p>
+                            Man bun PBR&B keytar copper mug prism, hell of helvetica. Synth
+                            crucifix offal deep v hella biodiesel. Church-key listicle
+                            polaroid put a bird on it chillwave palo santo enamel pin,
+                            tattooed meggings franzen la croix cray. Retro yr aesthetic four
+                            loko tbh helvetica air plant, neutra palo santo tofu mumblecore.
+                            Hoodie bushwick pour-over jean shorts chartreuse shabby chic.
+                            Roof party hammock master cleanse pop-up truffaut, bicycle
+                            rights skateboard affogato readymade sustainable deep v
+                            live-edge schlitz narwhal.
+                        </p>
+                        <ul>
+                            <li>#1 market</li>
+                            <li>#2 revenue</li>
+                            <li>#3 reputation</li>
+                        </ul>
+                    </div>
+                    <div class="content" id="goal">
+                        <h4>goals</h4>
+                        <p>
+                            Chambray authentic truffaut, kickstarter brunch taxidermy vape
+                            heirloom four dollar toast raclette shoreditch church-key.
+                            Poutine etsy tote bag, cred fingerstache leggings cornhole
+                            everyday carry blog gastropub. Brunch biodiesel sartorial mlkshk
+                            swag, mixtape hashtag marfa readymade direct trade man braid
+                            cold-pressed roof party. Small batch adaptogen coloring book
+                            heirloom. Letterpress food truck hammock literally hell of wolf
+                            beard adaptogen everyday carry. Dreamcatcher pitchfork yuccie,
+                            banh mi salvia venmo photo booth quinoa chicharrones.
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+    <script>
+        const about = document.querySelector(".about");
+        const tabs = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".content");
+        // set evenlistener in parent who has tab & all contents
+        about.addEventListener("click", function (e) {
+            const id = e.target.dataset.id; //here id is whole content div with id
+            if (id != null) {
+                //remove selected from other tab buttons
+                tabs.forEach((tab) => {
+                    //1way: tab.className.replace(" active", "");
+                    tab.classList.remove("active");
+                });
+                //only one tab active
+                e.target.classList.add("active");
+
+                //hideall others content and collapse them
+                contents.forEach((content) => {
+                    content.classList.remove("active");
+                });
+                //only one content active
+                const ele = document.getElementById(id);
+                ele.classList.add("active");
+            }
+        });
+    </script>
+</body>
+
+</html>
