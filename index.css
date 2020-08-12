@@ -36,6 +36,7 @@ Variables
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
+  --clr-gold: #c59d5f;
   --ft-primary: "Roboto", sans-serif;
   --ft-secondary: "Open Sans", sans-serif;
   --transition: all 0.3s linear;
